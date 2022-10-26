@@ -10,6 +10,8 @@ export type User = {
 @Injectable()
 export class UsersService {
   private readonly users: User[] = [
+    // NEVER STORE PASSWORDS IN PLAIN TEXT
+    // THIS IS AN EXAMPLE ONLY. TRY BCRYPT
     {
       id: 1,
       name: 'will',
@@ -29,4 +31,8 @@ export class UsersService {
       password: 'jokepw',
     },
   ];
+
+  async findOne(username: string): Promise<User | undefined> {
+    return this.users.find((user) => user.username === username);
+  }
 }
